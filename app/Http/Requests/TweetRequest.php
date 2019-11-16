@@ -45,16 +45,4 @@ class TweetRequest extends BaseFormRequest
             'var1.required' => 'El :attribute es obligatorio.'
         ];
     }
-
-      /**
-     *  Filters to be applied to the input.
-     *
-     * @return array
-     */
-    public function filters()
-    {
-        return [
-            'var1' => 'trim|lowercase',
-        ];
-    }
 }

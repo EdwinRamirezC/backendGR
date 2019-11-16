@@ -7,6 +7,7 @@ use Illuminate\Http\JsonResponse;
 
 abstract class BaseFormRequest extends FormRequest
 {
+
     /**
      * Get the validation rules that apply to the request.
      *
