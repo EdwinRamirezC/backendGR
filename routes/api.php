@@ -17,7 +17,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::group(['prefix' => 'v1'], function () {
-    Route::group(['prefix' => 'tweets'], function () {
+    Route::group(['prefix' => 'guardarTweets'], function () {
         Route::post('', 'TweetController@store');
+    });
+});
+Route::group(['prefix' => 'v1'], function () {
+    Route::group(['prefix' => 'consultarTweets'], function () {
+        Route::get('', 'TweetController@searchTweets');
     });
 });
