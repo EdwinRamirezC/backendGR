@@ -31,7 +31,10 @@ class TweetRequest extends BaseFormRequest
     public function rules()
     {
         $rules = [
-            "var1" => "required"
+            'id_tweet' => 'required',
+            'url' => 'required|url',
+            'screen_name' => 'required',
+            'texto'  => 'required'
         ];
 
         return $rules;
@@ -42,7 +45,10 @@ class TweetRequest extends BaseFormRequest
     public function messages()
     {
         return [
-            'var1.required' => 'El :attribute es obligatorio.'
+            'id_tweet.required' => 'El indicador del Tweet es obligatorio.',
+            'url.required' => 'La url del Tweet es obligatorio.',
+            'screen_name.required' => 'El nombre del usuario del Tweet es obligatorio.',
+            'texto.required' => 'El Texto del Tweet es obligatorio.'
         ];
     }
 }
