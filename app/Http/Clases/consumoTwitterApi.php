@@ -2,6 +2,9 @@
 
 namespace App\Http\Clases;
 
+use GuzzleHttp\Client;
+use GuzzleHttp\Subscriber\Oauth\Oauth1;
+
 class consumoTwitterApi{
 
     private $url;
@@ -13,27 +16,23 @@ class consumoTwitterApi{
         $this->count  = $count;
         $this->query = $query;
     }
-    public function recuperarTweets(){
-        // dd($this->url."?q=".$this->query."&count=".$this->count);
+    
+    public function recuperarTweets()
+    {
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
-        CURLOPT_URL => "https://api.twitter.com/1.1/search/tweets.json?q=mundo&count=1",
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_ENCODING => "",
-        CURLOPT_MAXREDIRS => 10,
-        CURLOPT_TIMEOUT => 30,
-        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-        CURLOPT_CUSTOMREQUEST => "GET",
-        CURLOPT_HTTPHEADER => array(
-            "Accept: */*",
-            'Authorization: OAuth oauth_consumer_key="XXfTrXKuEklDaB4dosnnIQdl0",oauth_token="1194832845526700032-3qllqrWZ2oLRcw6n9PuDq7JHeiXfAK",oauth_signature_method="HMAC-SHA1",oauth_timestamp="1573917743",oauth_nonce="tyxiaVFZ6BT",oauth_version="1.0",oauth_signature="N8zjobPOMeHE1IvaDumnYbh04L4%3D"',
-            "Cache-Control: no-cache",
-            "Connection: keep-alive",
-            "Content-Type: application/x-www-form-urlencoded",
-            "Host: api.twitter.com",
-            "cache-control: no-cache"
-        ),
+            CURLOPT_URL => $this->url."?q=".$this->query."&count=".$this->count,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "GET",
+            CURLOPT_HTTPHEADER => array(
+                "Accept: */*",
+                'Authorization: Bearer AAAAAAAAAAAAAAAAAAAAAMuPAwEAAAAAfaIshtiI9AXY6wFbQD1g3fCnsSQ%3DB8Sp5TkvmDl2hhl0DpRjGIonBjuILttkvGXw7Mtn9rf6580NIQ',
+            ),
         ));
 
         $response = curl_exec($curl);
@@ -44,7 +43,7 @@ class consumoTwitterApi{
         if ($err) {
         echo "cURL Error #:" . $err;
         } else {
-        echo $response;
+            return json_decode($response);
         }
     }
 }
