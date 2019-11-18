@@ -15,6 +15,7 @@ class Tweet extends Model
         'url',
         'screen_name',
         'imagen',
-        'texto'
+        'texto',
+        'valoracion',
     ];
 }

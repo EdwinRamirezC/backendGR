@@ -20,6 +20,7 @@ class CreateTweetsTable extends Migration
             $table->string('screen_name');
             $table->string('imagen')->nullable();
             $table->string('texto');
+            $table->string('valoracion');
 
             $table->softDeletes();
             $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
