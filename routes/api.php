@@ -20,6 +20,10 @@ Route::group(['prefix' => 'v1'], function () {
     Route::group(['prefix' => 'tweets'], function () {
         Route::post('', 'TweetController@store');
         Route::get('{hashtag}', 'TweetController@searchTweets');
+
+    });
+    Route::group(['prefix' => 'obtenerValoraciones'], function () {
+        Route::get('', 'TweetController@obtenerValoraciones');
     });
 });
 

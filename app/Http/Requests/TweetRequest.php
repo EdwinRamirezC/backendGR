@@ -20,9 +20,17 @@ class TweetRequest extends BaseFormRequest
      */
     // public function prepareForValidation()
     // {
-    //     // dd("antes");
+    //
     // }
 
+    public function withValidator($validation)
+    {
+        // se crea la url del tweet a partir de la informacion recibida
+        $url = "https://twitter.com/".$this->screen_name."/status/".$this->id_tweet;
+        $this->merge([
+            'url' =>$url
+        ]);
+    }
     /**
      * Get the validation rules that apply to the request.
      *
@@ -32,9 +40,9 @@ class TweetRequest extends BaseFormRequest
     {
         $rules = [
             'id_tweet' => 'required',
-            'url' => 'required|url',
             'screen_name' => 'required',
-            'texto'  => 'required'
+            'texto'  => 'required',
+            'valoracion' => 'required'
         ];
 
         return $rules;
